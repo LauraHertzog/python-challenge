@@ -8,7 +8,7 @@ candidates = {}
 winner = ""
 winner_votes = 0
 
-with open(election_data) as csv_file: 
+with open(election_data, "r") as csv_file: 
     csv_reader = csv.reader(csv_file, delimiter=",")
 
     csv_header = next(csv_file) 
@@ -24,7 +24,7 @@ with open(election_data) as csv_file:
             candidates[candidate] = candidates[candidate] + 1
         else: 
             candidates[candidate] = 1
-    
+
 print("Election Results")
 print("-------------------------")
 print(f"Total Votes: {total_votes}")
@@ -39,4 +39,15 @@ for candidate in candidates:
 
 print("-------------------------")
 print(f"Winner: {winner}")
+
+with open(os.path.join("analysis", "analysis.txt"),"w") as analysis_file: 
+    analysis_file.write("Election Results\n")
+    analysis_file.write("-------------------------\n")
+    analysis_file.write(f"Total Votes: {total_votes}\n")
+    analysis_file.write("-------------------------\n")
+    for candidate in candidates: 
+        votes = candidates[candidate]
+        analysis_file.write(f"{candidate}: {(votes / total_votes) * 100}% ({votes})\n")
+    analysis_file.write("-------------------------\n")
+    analysis_file.write(f"Winner: {winner}\n")
 

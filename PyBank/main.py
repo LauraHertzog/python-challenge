@@ -33,7 +33,7 @@ with open(budget_data) as csv_file:
     print("Financial Analysis")
     print("-------------------------")
     print(f"Total Months: {months}")
-    print(f"Average Change: TODO")
+    print(f"Average Change: {net_profit_loss/months}")
     print(f"Greatest Increase in Profit: {greatest_increase_month} ${greatest_increase}")
     print(f"Greatest Decrease in Profit: {greatest_decrease_month} ${greatest_decrease}")
     
